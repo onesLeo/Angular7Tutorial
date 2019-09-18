@@ -1,0 +1,23 @@
+<h1>Student Who Submitted Assignment</h1>
+<p>{{ title }}</p>
+<form ngForm #assignmentForm class="form">
+  <mat-form-field>
+    <input matInput #studentName [(ngModel)]="nameOfStudent" name="studentName" placeholder="Input Student Name!">
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput #assignmentName [(ngModel)]="nameOfAssignment" name="assignmentName" placeholder="Input Assignment Name!">
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput [matDatepicker]="picker" [(ngModel)]="dateOfAssignment" name="name" placeholder="Your Assignment Date!" />
+    <mat-datepicker-toggle matSuffix
+                           [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker ></mat-datepicker>
+  </mat-form-field>
+  <button mat-stroked-button color="primary" (click)="onSubmit(); assignmentForm.reset()"> Add Assignment </button>
+</form>
+<div *ngFor="let asg of assignments">
+
+  <p *ngIf="asg.submitted">Student <b>{{ asg.nameOfStudent }} has</b> submitted the assignment!</p>
+  <p *ngIf="!asg.submitted">Student <b>{{ asg.nameOfStudent }} hasn't</b>  submitted the assignment!</p>
+
+</div>
